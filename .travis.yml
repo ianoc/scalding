@@ -8,7 +8,7 @@ cache:
   - $HOME/.ivy2
   - project/target
 script:
-  - "echo no op "
+  - "echo no op"
 matrix:
   include:
 #BASE TESTS
