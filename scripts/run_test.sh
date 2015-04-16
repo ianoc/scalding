@@ -9,6 +9,7 @@ INNER_JAVA_OPTS="set javaOptions += \"-Dlog4j.configuration=file://$TRAVIS_BUILD
 withCmd() {
   CMD=$1
   for t in $TEST_TARGET; do
+    echo "Running: ./sbt ; project $t; set logLevel := Level.Warn; $INNER_JAVA_OPTS; ++$TRAVIS_SCALA_VERSION; $CMD"
     time ./sbt "; project $t; set logLevel := Level.Warn; $INNER_JAVA_OPTS; ++$TRAVIS_SCALA_VERSION; $CMD";
   done
 }
@@ -21,5 +22,6 @@ kill -9 $PROGRESS_REPORTER_PID
 
 # Separate JVM's while slower, avoids GC issues in sbt itself
 for t in $TEST_TARGET; do
+  echo "Running: ./sbt ; project $t; set logLevel := Level.Warn; $INNER_JAVA_OPTS; ++$TRAVIS_SCALA_VERSION; test"
   time ./sbt "; project $t; set logLevel := Level.Warn; $INNER_JAVA_OPTS; ++$TRAVIS_SCALA_VERSION; test" || exit 1
 done
