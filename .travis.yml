@@ -5,7 +5,8 @@ before_install: umask 0022
 cache:
   directories:
 #  - $HOME/.m2
-  - $HOME/.ivy2
+  - $HOME/.ivy2/cache/org.apache.commons
+  - $HOME/.ivy2/cache/org.apache.hadoop
   - $HOME/.sbt/0.13/dependency
 script:
   - "echo no op"
