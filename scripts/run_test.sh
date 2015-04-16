@@ -6,6 +6,9 @@ export JVM_OPTS="-XX:+CMSClassUnloadingEnabled -XX:+UseConcMarkSweepGC -XX:Reser
 
 INNER_JAVA_OPTS="set javaOptions += \"-Dlog4j.configuration=file://$TRAVIS_BUILD_DIR/project/travis-log4j.properties\""
 
+echo "Cleaning sbt..."
+time sbt clean
+
 withCmd() {
   CMD=$1
   for t in $TEST_TARGET; do echo "; project $t; set logLevel := Level.Warn; $INNER_JAVA_OPTS; ++$TRAVIS_SCALA_VERSION; $CMD"; done
