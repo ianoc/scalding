@@ -40,7 +40,7 @@ object ScaldingBuild extends Build {
   val scalameterVersion = "0.6"
   val scroogeVersion = "3.17.0"
   val slf4jVersion = "1.6.6"
-  val thriftVersion = "0.5.0"
+  val thriftVersion = "0.7.0"
 
   val printDependencyClasspath = taskKey[Unit]("Prints location of the dependencies")
 
@@ -73,7 +73,8 @@ object ScaldingBuild extends Build {
       "snapshots" at "https://oss.sonatype.org/content/repositories/snapshots",
       "Concurrent Maven Repo" at "http://conjars.org/repo",
       "Clojars Repository" at "http://clojars.org/repo",
-      "Cloudera" at "https://repository.cloudera.com/artifactory/cloudera-repos/"
+      "Cloudera" at "https://repository.cloudera.com/artifactory/cloudera-repos/",
+      "Twitter Maven" at "http://maven.twttr.com" // Needed for hadoop-lzo, last on list as its flaky seemingly.
     ),
 
     printDependencyClasspath := {
@@ -287,7 +288,7 @@ object ScaldingBuild extends Build {
       "com.twitter.elephantbird" % "elephant-bird-core" % elephantbirdVersion,
       "com.hadoop.gplcompression" % "hadoop-lzo" % hadoopLzoVersion,
       // TODO: split this out into scalding-thrift
-      "org.apache.thrift" % "libthrift" % thriftVersion,
+      "org.apache.thrift" % "libthrift" % thriftVersion % "provided",
       // TODO: split this out into a scalding-scrooge
       "com.twitter" %% "scrooge-serializer" % scroogeVersion % "provided",
       "org.slf4j" % "slf4j-api" % slf4jVersion,
