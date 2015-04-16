@@ -5,7 +5,12 @@ before_install: umask 0022
 cache:
   directories:
   - $HOME/.m2
+  - $HOME/.sbt
   - $HOME/.ivy2
+  - scalding-date/target/resolution-cache/com.twitter
+  - scalding-core/target/resolution-cache/com.twitter
+  - scalding-commons/target/resolution-cache/com.twitter
+  - scalding-args/target/resolution-cache/com.twitter
 script:
   - "echo no op"
 matrix:
