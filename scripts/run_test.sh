@@ -8,7 +8,9 @@ INNER_JAVA_OPTS="set javaOptions += \"-Dlog4j.configuration=file://$TRAVIS_BUILD
 
 withCmd() {
   CMD=$1
-  for t in $TEST_TARGET; do echo "; project $t; set logLevel := Level.Warn; $INNER_JAVA_OPTS; ++$TRAVIS_SCALA_VERSION; $CMD"; done
+  for t in $TEST_TARGET; do
+    ./sbt "; project $t; set logLevel := Level.Warn; $INNER_JAVA_OPTS; ++$TRAVIS_SCALA_VERSION; $CMD";
+  done
 }
 
 bash -c "while true; do echo -n .; sleep 5; done" &
@@ -16,5 +18,10 @@ bash -c "while true; do echo -n .; sleep 5; done" &
 PROGRESS_REPORTER_PID=$!
 time ./sbt "$(withCmd "compile; test:compile")"
 kill -9 $PROGRESS_REPORTER_PID
+
+
+for t in $TEST_TARGET; do
+  ./sbt "; project $t; set logLevel := Level.Warn; $INNER_JAVA_OPTS; ++$TRAVIS_SCALA_VERSION; test";
+done
 
 ./sbt "$(withCmd test)"
