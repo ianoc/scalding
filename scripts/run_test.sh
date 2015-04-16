@@ -10,7 +10,7 @@ withCmd() {
   CMD=$1
   for t in $TEST_TARGET; do
     echo "Running: ./sbt ; project $t; set logLevel := Level.Warn; $INNER_JAVA_OPTS; ++$TRAVIS_SCALA_VERSION; $CMD"
-    time ./sbt "; project $t; set logLevel := Level.Warn; $INNER_JAVA_OPTS; ++$TRAVIS_SCALA_VERSION; $CMD";
+    time ./sbt "; project $t; set logLevel := Level.Warn; $INNER_JAVA_OPTS; ++$TRAVIS_SCALA_VERSION; $CMD" &> /dev/null
   done
 }
 
