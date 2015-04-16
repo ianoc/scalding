@@ -6,7 +6,6 @@ cache:
   directories:
   - $HOME/.m2
   - $HOME/.ivy2
-  - project/target
 script:
   - "echo no op"
 matrix:
