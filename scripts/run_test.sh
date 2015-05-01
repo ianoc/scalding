@@ -23,4 +23,8 @@ kill -9 $PROGRESS_REPORTER_PID
 echo "Looking for sbt launch stuff?"
 ls -lh /home/travis/.sbt/launchers/0.13.8/sbt-launch.jar
 
+curl https://private-repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/sbt-launch/0.13.8/sbt-launch.jar
+
+wget https://private-repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/sbt-launch/0.13.8/sbt-launch.jar
+
 ./sbt "$(withCmd test)"
